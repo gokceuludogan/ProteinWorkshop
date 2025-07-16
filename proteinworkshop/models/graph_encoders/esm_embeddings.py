@@ -199,7 +199,7 @@ class EvolutionaryScaleModeling(nn.Module):
         if model not in self.model_names:
             raise ValueError(f"Unknown model {model}")
         model_file = _download(self.url[model], path, md5=self.md5[model])
-        model_data = torch.load(model_file, map_location="cpu")
+        model_data = torch.load(model_file, map_location="CPU", weights_only=False))
         if model != "ESM-1v" and not model.startswith("ESM-2"):
             regression_model = f"{model}-regression"
             regression_file = _download(
